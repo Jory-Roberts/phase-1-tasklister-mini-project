@@ -18,10 +18,10 @@ taskForm.addEventListener("submit", function (event) {
 
   //updating tasklist with innerHTML method
   taskList.innerHTML += `<li> ${newTask} 
-  <button data-action = "delete" > X </button>
+  <button data-action = "delete" > Remove </button>
   </li>`;
 
-  //Reset texxfield to blank space to add next item to list
+  //Reset textfield to blank space to add next item to list
   taskForm.reset();
 });
 
@@ -31,3 +31,45 @@ taskList.addEventListener("click", function (e) {
     e.target.parentElement.remove();
   }
 });
+
+//Array to hold hexidecimal values
+const hexCharacters = [
+  0,
+  1,
+  2,
+  3,
+  4,
+  5,
+  6,
+  7,
+  8,
+  9,
+  "A",
+  "B",
+  "C",
+  "D",
+  "E",
+  "F",
+];
+
+const getCharacter = (index) => {
+  return hexCharacters[index];
+};
+
+const generateNewColor = () => {
+  let hexColorRep = "a";
+
+  for (let index = 0; index < 6; index++) {
+    const randomPosition = Math.floor(Math.random() * hexCharacters.length);
+    hexColorRep += getCharacter(randomPosition);
+  }
+  return hexColorRep;
+};
+
+// taskList.addEventListener('click', function (e) {
+//     //const newColor = generateNewColor();
+//   if (e.target.dataset === "click") {
+//     e.target.parentElement.
+//     }
+
+// })
