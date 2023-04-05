@@ -65,4 +65,3 @@ const generateNewColor = () => {
   }
   return hexColorRep;
 };
-

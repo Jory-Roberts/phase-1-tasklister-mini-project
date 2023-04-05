@@ -35,3 +35,15 @@ button {
   border-radius: 5px;
   box-shadow: 2px 5px 5px #333;
 }
+
+#priority-select option[value="low"] {
+  color: green;
+}
+
+#priority-select option[value="medium"] {
+  color: yellow;
+}
+
+#priority-select option[value="high"] {
+  color: red;
+}
