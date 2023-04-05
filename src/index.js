@@ -66,10 +66,3 @@ const generateNewColor = () => {
   return hexColorRep;
 };
 
-// taskList.addEventListener('click', function (e) {
-//     //const newColor = generateNewColor();
-//   if (e.target.dataset === "click") {
-//     e.target.parentElement.
-//     }
-
-// })
