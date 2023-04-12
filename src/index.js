@@ -32,36 +32,20 @@ taskList.addEventListener("click", function (e) {
   }
 });
 
-//Array to hold hexidecimal values
-const hexCharacters = [
-  0,
-  1,
-  2,
-  3,
-  4,
-  5,
-  6,
-  7,
-  8,
-  9,
-  "A",
-  "B",
-  "C",
-  "D",
-  "E",
-  "F",
-];
+//Generate Random Color
 
-const getCharacter = (index) => {
-  return hexCharacters[index];
+const random = (number) => {
+  return Math.floor(Math.random() * (number * 1));
 };
 
-const generateNewColor = () => {
-  let hexColorRep = "a";
+const newButton = document.createElement("button");
+newButton.textContent = "Change Color";
+newButton.classList = "color-change";
 
-  for (let index = 0; index < 6; index++) {
-    const randomPosition = Math.floor(Math.random() * hexCharacters.length);
-    hexColorRep += getCharacter(randomPosition);
-  }
-  return hexColorRep;
-};
+newButton.addEventListener("click", () => {
+  const randomColor = `rgb(${random(255)}, ${random(255)}, ${random(255)}`;
+
+  div.style.backgroundColor = randomColor;
+});
+
+document.getElementById("main-content").appendChild(newButton);
