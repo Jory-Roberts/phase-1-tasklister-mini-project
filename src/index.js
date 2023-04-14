@@ -2,35 +2,46 @@
 // As a user, I should be able to click some form of a submit button.
 // As a user, I expect to see the task string that I provided appear in the DOM after the submit button has been activated.
 
-document.addEventListener("DOMContentLoaded", () => {});
+document.addEventListener("DOMContentLoaded", () => {
+  //Input Id's
+  const newTaskForm = document.getElementById("create-task-form");
+  const newTaskDescription = document.getElementById("new-task-description");
 
-const taskForm = document.querySelector("#create-task-form");
+  const newTaskUl = document.getElementById("tasks");
 
-const taskList = document.querySelector("#tasks");
+  //attach event listeners to DOM contents
+  newTaskForm.addEventListener("submit", () => {
+    createNewTask(event, newTaskDescription);
+    //clear input field
+    newTaskForm.reset();
+  });
+});
 
-//submit on form to add item to list
-taskForm.addEventListener("submit", function (event) {
-  // suppressing event to keep form from reloading page
+const createNewTask = (event, newTaskDescription) => {
+  //orevent form from refreshing when submit event occurs
   event.preventDefault();
+  //create new li element where tasks will live
+  const newTask = document.createElement("li");
+  newTask.innerText = newTaskDescription.value;
 
-  //query selector by Id
-  const newTask = document.querySelector("#new-task-description").value;
+  //new task appended to li
+  appendNewTask(newTask);
 
-  //updating tasklist with innerHTML method
-  taskList.innerHTML += `<li> ${newTask} 
-  <button data-action = "delete" > Remove </button>
-  </li>`;
+  //create delete button
+  const deleteButton = document.createElement("button");
+  deleteButton.innerText = "Delete";
 
-  //Reset textfield to blank space to add next item to list
-  taskForm.reset();
-});
+  deleteButton.addEventListener("click", (event) => {
+    //delete task from li DOM element
+    event.target.parentNode.remove();
+  });
 
-//Click event that deletes task from list when x btn is clicked
-taskList.addEventListener("click", function (e) {
-  if (e.target.dataset.action === "delete") {
-    e.target.parentElement.remove();
-  }
-});
+  newTask.appendChild(deleteButton);
+};
+
+const appendNewTask = (task) => {
+  document.getElementById("tasks").appendChild(task);
+};
 
 //Generate Random Color
 
@@ -49,3 +60,33 @@ changeColorButton.addEventListener("click", () => {
 });
 
 document.getElementById("main-content").appendChild(changeColorButton);
+
+// newTaskForm.addEventListener("click", function (e) {
+//   if (e.target.dataset.action === "delete") {
+//     e.target.parentElement.remove();
+//   }
+// });
+
+//submit on form to add item to list
+// newTaskForm.addEventListener("submit", function (event) {
+//   // suppressing event to keep form from reloading page
+//   event.preventDefault();
+
+//   //query selector by Id
+//   const newTask = document.querySelector("#new-task-description").value;
+
+//   //updating tasklist with innerHTML method
+//   newTaskDescription.innerHTML += `<li> ${newTask}
+//   <button data-action = "delete" > Remove </button>
+//   </li>`;
+
+//   //Reset textfield to blank space to add next item to list
+//   taskForm.reset();
+// });
+
+//Click event that deletes task from list when x btn is clicked
+// newTaskForm.addEventListener("click", function (e) {
+//   if (e.target.dataset.action === "delete") {
+//     e.target.parentElement.remove();
+//   }
+// });
