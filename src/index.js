@@ -38,14 +38,14 @@ const random = (number) => {
   return Math.floor(Math.random() * (number * 1));
 };
 
-const newButton = document.createElement("button");
-newButton.textContent = "Change Color";
-newButton.classList = "color-change";
+const changeColorButton = document.createElement("button");
+changeColorButton.textContent = "Change Color";
+changeColorButton.classList = "color-change";
 
-newButton.addEventListener("click", () => {
+changeColorButton.addEventListener("click", () => {
   const randomColor = `rgb(${random(255)}, ${random(255)}, ${random(255)}`;
 
-  div.style.backgroundColor = randomColor;
+  changeColorButton.style.backgroundColor = randomColor;
 });
 
-document.getElementById("main-content").appendChild(newButton);
+document.getElementById("main-content").appendChild(changeColorButton);
