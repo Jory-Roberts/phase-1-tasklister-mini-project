@@ -13,22 +13,29 @@ const addingEventListeners = () => {
     .addEventListener("submit", handleFormSubmit);
 };
 
-const handleFormSubmit = (event) => {
-  event.preventDefault();
-  const task = event.target[0].value;
+const handleFormSubmit = (e) => {
+  e.preventDefault();
+  const task = e.target[0].value;
 
   displayTask(task);
 };
 
 const displayTask = (task) => {
   const taskUl = document.getElementById("tasks");
-
   const taskLi = document.createElement("li");
+  const deleteBtn = document.createElement("button");
 
-  taskLi.textContent = task;
+  deleteBtn.textContent = "x";
+  deleteBtn.addEventListener("click", deleteTask);
 
+  taskLi.textContent = task + " ";
   taskUl.appendChild(taskLi);
+  taskLi.appendChild(deleteBtn);
 };
+
+const deleteTask = (e) => e.target.parentNode.remove();
+
+
 
 // function sortTasks() {
 //   const sortTasksSelect = document.getElementById("sort-tasks");
