@@ -3,63 +3,42 @@
 // As a user, I expect to see the task string that I provided appear in the DOM after the submit button has been activated.
 
 document.addEventListener("DOMContentLoaded", () => {
-  //Input Id's
-  const newTaskForm = document.getElementById("create-task-form");
-  const newTaskDescription = document.getElementById("new-task-description");
-
-  const newTaskUl = document.getElementById("tasks");
-
-  //attach event listeners to DOM contents
-  newTaskForm.addEventListener("submit", () => {
-    createNewTask(event, newTaskDescription);
-    //clear input field
-    newTaskForm.reset();
-  });
+  addingEventListeners();
 });
 
-const createNewTask = (event, newTaskDescription) => {
-  //orevent form from refreshing when submit event occurs
+//get the form and add event listener
+const addingEventListeners = () => {
+  document
+    .getElementById("create-task-form")
+    .addEventListener("submit", handleFormSubmit);
+};
+
+const handleFormSubmit = (event) => {
   event.preventDefault();
-  //create new li element where tasks will live
-  const newTask = document.createElement("li");
-  newTask.innerText = newTaskDescription.value;
+  const task = event.target[0].value;
 
-  //new task appended to li
-  appendNewTask(newTask);
-
-  //create delete button
-  const deleteButton = document.createElement("button");
-  deleteButton.innerText = "Delete";
-
-  deleteButton.addEventListener("click", (event) => {
-    //delete task from li DOM element
-    event.target.parentNode.remove();
-  });
-
-  newTask.appendChild(deleteButton);
+  displayTask(task);
 };
 
-const appendNewTask = (task) => {
-  document.getElementById("tasks").appendChild(task);
+const displayTask = (task) => {
+  const taskUl = document.getElementById("tasks");
+
+  const taskLi = document.createElement("li");
+
+  taskLi.textContent = task;
+
+  taskUl.appendChild(taskLi);
 };
 
-//Generate Random Color
-
-const random = (number) => {
-  return Math.floor(Math.random() * (number * 1));
-};
-
-const changeColorButton = document.createElement("button");
-changeColorButton.textContent = "Change Color";
-changeColorButton.classList = "color-change";
-
-changeColorButton.addEventListener("click", () => {
-  const randomColor = `rgb(${random(255)}, ${random(255)}, ${random(255)}`;
-
-  changeColorButton.style.backgroundColor = randomColor;
-});
-
-document.getElementById("main-content").appendChild(changeColorButton);
+// function sortTasks() {
+//   const sortTasksSelect = document.getElementById("sort-tasks");
+//   if (sortTasksSelect.value === "h-l") {
+//     taskArr.sort((a, b) => a.priorityLevel - b.priorityLevel);
+//   } else {
+//     taskArr.sort((a, b) => b.priorityLevel - a.priorityLevel);
+//   }
+//   displayTasks();
+// }
 
 // newTaskForm.addEventListener("click", function (e) {
 //   if (e.target.dataset.action === "delete") {
@@ -90,3 +69,61 @@ document.getElementById("main-content").appendChild(changeColorButton);
 //     e.target.parentElement.remove();
 //   }
 // });
+
+//Input Id's
+//   const newTaskForm = document.getElementById("create-task-form");
+//   const newTaskDescription = document.getElementById("new-task-description");
+
+//   const newTaskUl = document.getElementById("tasks");
+
+//   //attach event listeners to DOM contents
+//   newTaskForm.addEventListener("submit", () => {
+//     createNewTask(event, newTaskDescription);
+//     //clear input field
+//     newTaskForm.reset();
+// });
+// });
+
+// const createNewTask = (event, newTaskDescription) => {
+//   //prevent form from refreshing when submit event occurs
+//   event.preventDefault();
+//   //create new li element where tasks will live
+//   const newTask = document.createElement("li");
+//   newTask.innerText = newTaskDescription.value;
+
+//   //new task appended to li
+//   appendNewTask(newTask);
+
+//   //create delete button
+//   const deleteButton = document.createElement("button");
+//   deleteButton.innerText = "Delete";
+
+//   deleteButton.addEventListener("click", (event) => {
+//     //delete task from li
+//     event.target.parentNode.remove();
+//   });
+
+//   newTask.appendChild(deleteButton);
+// };
+
+// const appendNewTask = (task) => {
+//   document.getElementById("tasks").appendChild(task);
+// };
+
+// //Generate Random Color
+
+// const random = (number) => {
+//   return Math.floor(Math.random() * (number * 1));
+// };
+
+// const changeColorButton = document.createElement("button");
+// changeColorButton.textContent = "Change Color";
+// changeColorButton.classList = "color-change";
+
+// changeColorButton.addEventListener("click", () => {
+//   const randomColor = `rgb(${random(255)}, ${random(255)}, ${random(255)}`;
+
+//   changeColorButton.style.backgroundColor = randomColor;
+// });
+
+// document.getElementById("main-content").appendChild(changeColorButton);
