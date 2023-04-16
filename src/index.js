@@ -25,8 +25,6 @@ const handleFormSubmit = (e) => {
   console.log(taskObjArr);
 
   displayTask(task, priorityLevel);
-  
-  
 };
 
 const displayTask = (task, priorityLevel) => {
@@ -42,8 +40,6 @@ const displayTask = (task, priorityLevel) => {
   taskUl.appendChild(taskLi);
   taskLi.appendChild(deleteBtn);
 };
-
-
 
 const deleteTask = (e) => e.target.parentNode.remove();
 
@@ -62,7 +58,6 @@ const getPriorityColor = (priorityLevel) => {
 //   } else {
 //     taskObjArr.sort((a, b) => b.priorityLevel - a.priorityLevel);
 //   }
-  
+
 //   displayTasks();
 // };
-
